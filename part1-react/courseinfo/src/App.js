@@ -1,8 +1,19 @@
 import React from 'react'
 
+/**
+const Title = ({course}) => <h1>{course}</h1>
+ */
+/**
+const Title = (props) => {
+  const {course} = props
+  return <h1>{course}</h1>
+}
+ */
+
 const Title = (props) => {
   return <h1>{props.course}</h1>
 }
+const Paragrhap = ({text}) => <p>{text}</p>
 
 const App = () => {
   const course = 'Half Stack application development'
