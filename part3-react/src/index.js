@@ -7,22 +7,31 @@ const App = () => {
     // const [rigth, setRight] = useState(0)
 
     const [counters, setCounters] = useState({
-        left : 0,
-        right : 0
+        left: 0,
+        right: 0,
+        clicks: 0,
+        mensaje: 'Mensaje en el estado'
     });
+    const[clicks, setClicks] = useState([])
 
     const handleClickLeft = () => {
-        setCounters({
+        const newCounterState = {
+            ...counters,
             left : counters.left + 1,
-            right : counters.right
-        });
+            clicks : counters.clicks + 1
+        }
+        setCounters(newCounterState);
+        setClicks(prevClicks => ([...prevClicks, 'L']))
     };
 
     const handleClickRight = () => {
-        setCounters({
+        const newCounterState = {
+            ...counters,
             right : counters.right + 1,
-            left : counters.left
-        });
+            clicks : counters.clicks + 1
+        }
+        setCounters(newCounterState);
+        setClicks(prevClicks => ([...prevClicks, 'R']))
     };
 
     return (
@@ -35,6 +44,8 @@ const App = () => {
                 rigth
             </button>
             {counters.right}
+            <p>Clicks totales: {clicks.length}</p>
+            {clicks.join(", ")}
         </div>
     )
 }
