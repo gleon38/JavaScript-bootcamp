@@ -10,16 +10,15 @@ const ListOfClicks = ({clicks}) => {
     return <p>{clicks.join(", ")}</p>
 }
 
-const App = () => {
-    // const [left, setLeft] = useState(0)
-    // const [rigth, setRight] = useState(0)
+const INITIAL_COUNTER_STATE = {
+    left: 4,
+    right: 2,
+    mensaje: 'Mensaje en el estado'
+}
 
-    const [counters, setCounters] = useState({
-        left: 0,
-        right: 0,
-        clicks: 0,
-        mensaje: 'Mensaje en el estado'
-    });
+const App = () => {
+
+    const [counters, setCounters] = useState(INITIAL_COUNTER_STATE);
     const[clicks, setClicks] = useState([])
 
     const handleClickLeft = () => {
@@ -42,6 +41,11 @@ const App = () => {
         setClicks(prevClicks => ([...prevClicks, 'R']))
     };
 
+    const handleReset = () => {
+        setCounters(INITIAL_COUNTER_STATE);
+        setClicks([]);
+    }
+
     return (
         <div>
             {counters.left}
@@ -52,6 +56,9 @@ const App = () => {
                 rigth
             </button>
             {counters.right}
+            <p>
+                <button onClick={handleReset}>reset</button>
+            </p>
             <p>Clicks totales: {clicks.length}</p>
             {clicks.length === 0
                 ? <WarningNotUsed />
