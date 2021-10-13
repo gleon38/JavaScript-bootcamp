@@ -2,6 +2,14 @@ import { useState } from "react";
 import reactDom from "react-dom";
 import "./styles.css";
 
+const WarningNotUsed = () => {
+    return <h1>Todavía no se ha usado el contador</h1>
+}
+
+const ListOfClicks = ({clicks}) => {
+    return <p>{clicks.join(", ")}</p>
+}
+
 const App = () => {
     // const [left, setLeft] = useState(0)
     // const [rigth, setRight] = useState(0)
@@ -45,7 +53,10 @@ const App = () => {
             </button>
             {counters.right}
             <p>Clicks totales: {clicks.length}</p>
-            {clicks.join(", ")}
+            {clicks.length === 0
+                ? <WarningNotUsed />
+                : <ListOfClicks clicks = {clicks} />
+            }
         </div>
     )
 }
