@@ -10,52 +10,35 @@ const ListOfClicks = ({clicks}) => {
     return <p>{clicks.join(", ")}</p>
 }
 
-const INITIAL_COUNTER_STATE = {
-    left: 4,
-    right: 2,
-    mensaje: 'Mensaje en el estado'
-}
-
 const App = () => {
 
-    const [counters, setCounters] = useState(INITIAL_COUNTER_STATE);
     const[clicks, setClicks] = useState([])
 
     const handleClickLeft = () => {
-        const newCounterState = {
-            ...counters,
-            left : counters.left + 1,
-            clicks : counters.clicks + 1
-        }
-        setCounters(newCounterState);
         setClicks(prevClicks => ([...prevClicks, 'L']))
     };
 
     const handleClickRight = () => {
-        const newCounterState = {
-            ...counters,
-            right : counters.right + 1,
-            clicks : counters.clicks + 1
-        }
-        setCounters(newCounterState);
         setClicks(prevClicks => ([...prevClicks, 'R']))
     };
 
     const handleReset = () => {
-        setCounters(INITIAL_COUNTER_STATE);
         setClicks([]);
     }
 
+    const left = clicks.filter(click => click === 'L')
+    const right = clicks.filter(click => click === 'R')
+    
     return (
         <div>
-            {counters.left}
+            {left.length}
             <button onClick = {handleClickLeft}>
                 left
             </button>
             <button onClick = {handleClickRight}>
                 rigth
             </button>
-            {counters.right}
+            {right.length}
             <p>
                 <button onClick={handleReset}>reset</button>
             </p>
